@@ -13,7 +13,7 @@
         <div class="alert alert-danger">
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
-            @endforeach
+            @endforeach 
         </div>
     @endif
     <button>Create</button>
