@@ -21,7 +21,7 @@ class Posts extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -29,7 +29,13 @@ class Posts extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|min:2|max:30',
+            'content' => 'required|min:5|max:60'
+        ]);
+        $fields = $request->all($validated);
+        $post = Post::create($fields);
+        return redirect("/posts/{$post->id}");
     }
 
     /**
@@ -37,7 +43,8 @@ class Posts extends Controller
      */
     public function show(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.show', compact('post'));
     }
 
     /**
