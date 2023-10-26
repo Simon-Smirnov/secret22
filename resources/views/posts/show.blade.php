@@ -2,3 +2,11 @@
 <p>{{ $post->content }}</p>
 <p>№{{ $post->id }}</p>
 <small>Data creted: {{ $post->created_at }}</small>
+<hr>
+<a href="/posts/edit/{{ $post->id }}">Edit post</a>
+<hr>
+<form method="POST" action="/posts/{{ $post->id }}">
+    @csrf
+    @method('DELETE')
+    <button>Delete post</button>
+</form>
