@@ -5,7 +5,7 @@
     <div>Price: {{ $car->price }}</div>
 </div>
 <hr>
-<a href="/cars/edit/{{ $car->id }}">Edit car</a>
+<a href="/cars/{{ $car->id }}/edit">Edit car</a>
 <hr>
 <form method="POST" action="/cars/{{ $car->id }}">
     @method('DELETE')

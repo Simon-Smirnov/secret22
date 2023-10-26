@@ -3,7 +3,7 @@
 <p>№{{ $post->id }}</p>
 <small>Data creted: {{ $post->created_at }}</small>
 <hr>
-<a href="/posts/edit/{{ $post->id }}">Edit post</a>
+<a href="/posts/{{ $post->id }}/edit">Edit post</a>
 <hr>
 <form method="POST" action="/posts/{{ $post->id }}">
     @csrf
