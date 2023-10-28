@@ -1,5 +1,5 @@
 <h1>Add new car</h1>
-<form method="POST" action="/cars">
+<form method="POST" action="{{ route('cars.store') }}">
     @csrf    
     <div>
         <p>Manufacturer</p>

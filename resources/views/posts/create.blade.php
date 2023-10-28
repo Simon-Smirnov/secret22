@@ -1,10 +1,11 @@
 <h1>Create post</h1>
-<form method="POST" action="/posts">
+<form method="POST" action="{{ route('posts.store') }}">
     @csrf
-    <div>
+    <!-- <div>
         <p>Title</p><br>
         <input name="title" value="{{ old('title') }}">
-    </div>
+    </div> -->
+    <x-input title="Title" name="title"/>
     <div>
         <p>Content</p>
         <textarea name="content">{{ old('content') }}</textarea>

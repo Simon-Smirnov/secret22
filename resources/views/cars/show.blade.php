@@ -5,9 +5,9 @@
     <div>Price: {{ $car->price }}</div>
 </div>
 <hr>
-<a href="/cars/{{ $car->id }}/edit">Edit car</a>
+<a href="{{ route('cars.edit', $car->id) }}">Edit car</a>
 <hr>
-<form method="POST" action="/cars/{{ $car->id }}">
+<form method="POST" action="{{ route('cars.destroy', $car->id) }}">
     @method('DELETE')
     @csrf
     <button>Delete car</button>

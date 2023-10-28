@@ -26,7 +26,7 @@ class Cars extends Controller
             'price' => 'required|integer|max:990000000|multiple_of:1000',
         ]);
         $car = Car::create($validated);
-        return redirect("/cars/$car->id");
+        return redirect()->route('cars.show', $car->id);
     }
 
     public function show(Car $car)
@@ -47,12 +47,12 @@ class Cars extends Controller
             'price' => 'required|integer|max:990000000|multiple_of:1000',
         ]);
         $car->update($validated);
-        return redirect("/cars/$car->id");
+        return redirect()->route('cars.show', $car->id);
     }
 
     public function destroy(Car $car)
     {
         $car->delete();
-        return redirect("/cars");
+        return redirect()->route('cars.index');
     }
 }
