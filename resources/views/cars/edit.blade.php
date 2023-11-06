@@ -23,5 +23,12 @@
             <div style="color:red">{{ $message }}</div>
         @enderror
     </div>
+    <div>
+        <p>Transmission</p>
+        <x-select name="transmission" :options="$transmissions" :currentoption="$car->transmission"></x-select>
+        @error('transmission')
+            <div style="color:red">{{ $message }}</div>
+        @enderror
+    </div>
     <button>Edit car</button>
 </form>

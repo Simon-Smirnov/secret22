@@ -3,6 +3,7 @@
     <div>Manufacturer: {{ $car->manufacturer }}</div>
     <div>Model: {{ $car->model }}</div>
     <div>Price: {{ $car->price }}</div>
+    <div>Transmission: {{ $car->transmission }}</div>
 </div>
 <hr>
 <a href="{{ route('cars.edit', $car->id) }}">Edit car</a>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Cars\Store as StoreRequest;
+use App\Http\Requests\Cars\Update as UpdateRequest;
 use App\Models\Car;
 use Illuminate\Http\Request;
 
@@ -15,38 +17,34 @@ class Cars extends Controller
 
     public function create()
     {
-        return view('cars.create');
+        $transmissions = config('car.transmission');
+        return view('cars.create', compact('transmissions'));
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $validated = $request->validate([
-            'manufacturer' => 'required|min:2|max:64',
-            'model' => 'required|min:2|max:64',
-            'price' => 'required|integer|max:990000000|multiple_of:1000',
-        ]);
-        $car = Car::create($validated);
+        $fields = $request->validated();
+        $car = Car::create($fields);
         return redirect()->route('cars.show', $car->id);
     }
 
     public function show(Car $car)
     {
+        $key_transmission  = $car['transmission'];
+        $car['transmission'] = config('car.transmission.' . $key_transmission);
         return view('cars.show', compact('car'));
     }
 
     public function edit(Car $car)
     {
-        return view('cars.edit', compact('car'));
+        $transmissions = config('car.transmission');
+        return view('cars.edit', compact('car', 'transmissions'));
     }
 
-    public function update(Request $request, Car $car)
+    public function update(UpdateRequest $request, Car $car)
     {
-        $validated = $request->validate([
-            'manufacturer' => 'required|min:2|max:64',
-            'model' => 'required|min:2|max:64',
-            'price' => 'required|integer|max:990000000|multiple_of:1000',
-        ]);
-        $car->update($validated);
+        $fields = $request->validated();
+        $car->update($fields);
         return redirect()->route('cars.show', $car->id);
     }
 

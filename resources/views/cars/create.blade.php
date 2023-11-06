@@ -13,6 +13,13 @@
         <p>Price</p>
         <input name="price" value="{{ old('price') }}">
     </div>
+    <div>
+        <p>Transmission</p>
+        <x-select name="transmission" :options="$transmissions"></x-select>
+        @error('transmission')
+            <div style="color:red">{{ $message }}</div>
+        @enderror
+    </div>
     <button>Add</button>
 </form>
 @if ($errors->any())
