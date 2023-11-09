@@ -11,7 +11,7 @@ class Cars extends Controller
 {
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::orderByDesc('created_at')->get();
         return view('cars.index', compact('cars'));
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Requests\Cars;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\Car;
 
 class Store extends FormRequest
 {
@@ -25,7 +26,8 @@ class Store extends FormRequest
             'price' => 'required|integer|max:990000000|multiple_of:1000',
             'transmission' => [
                 Rule::in(array_keys(config('car.transmission'))),
-            ]
+            ],
+            'vin' => ['required', 'min:4', 'max:14', $this->ruleUniqueVin()]
         ];
     }
 
@@ -35,12 +37,18 @@ class Store extends FormRequest
             'manufacturer' => 'Manufacturer',
             'model' => 'Model',
             'price' => 'Price',
+            'transmission' => 'Type of transmission',
+            'vin' => 'VIN code'
         ];
     }
 
-    public function ruleModelExists() 
+    protected function ruleModelExists() 
     {
         return Rule::unique('cars');
+    }
+
+    protected function ruleUniqueVin() {
+        return Rule::unique(Car::class, 'vin');
     }
     
 }

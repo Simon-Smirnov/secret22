@@ -1,5 +1,8 @@
-<h1>Add new car</h1>
-<form method="POST" action="{{ route('cars.store') }}">
+<x-layout.main title="Add new car">
+<x-form action="{{ route('cars.store') }}">
+    @include('cars.form')
+</x-form> 
+<!-- <form method="POST" action="{{ route('cars.store') }}">
     @csrf    
     <div>
         <p>Manufacturer</p>
@@ -30,4 +33,5 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif -->
+</x-layout.main>

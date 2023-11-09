@@ -4,6 +4,7 @@
     <div>Model: {{ $car->model }}</div>
     <div>Price: {{ $car->price }}</div>
     <div>Transmission: {{ $car->transmission }}</div>
+    <div>VIN: {{ $car->vin }}</div>
 </div>
 <hr>
 <a href="{{ route('cars.edit', $car->id) }}">Edit car</a>

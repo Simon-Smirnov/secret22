@@ -1,5 +1,10 @@
 <h1>Edit car #{{ $car->id }}</h1>
-<form method="POST" action="{{ route('cars.update', $car->id) }}">
+<x-form action="{{ route('cars.update', $car->id) }}" method="put">
+    @bind($car)
+        @include('cars.form')
+    @endbind
+</x-form>
+<!-- <form method="POST" action="{{ route('cars.update', $car->id) }}">
     @method('PUT')
     @csrf    
     <div>
@@ -31,4 +36,4 @@
         @enderror
     </div>
     <button>Edit car</button>
-</form>
+</form> -->
