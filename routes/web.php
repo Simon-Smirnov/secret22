@@ -25,6 +25,7 @@ Route::post('/posts', [Posts::class, 'store'])->name('posts.store');
 
 Route::resource('cars', Cars::class);
 
+
 // Route::get('/cars', [Cars::class, 'index']);
 // Route::post('/cars', [Cars::class, 'store']);
 // Route::get('/cars/create', [Cars::class, 'create']);
