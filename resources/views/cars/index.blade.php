@@ -1,14 +1,25 @@
-<h1>All cars</h1>
+@extends('components.layout.newmain')
 
-<hr>
-<a href="{{ route('cars.create') }}">Add new car</a>
-<hr>
+@section('title', 'All cars')
 
-@foreach($cars as $car)
+@section('h1', 'All cars')
+
+@section('menu')
     <ul>
-        <li class="">
-            <span>{{ $car->model }}</span>
-            <a href="{{ route('cars.show', $car->id) }}">Read more...</a>
-        </li>
+        <li><a href="{{ route('cars.index') }}">All cars</a></li>
+        <li><a href="{{ route('cars.create') }}">Add new car</a></li>
+        <li><a href="{{ route('cars.trash.index') }}">Car's trash</a></li>
     </ul>
-@endforeach
+@endsection
+
+@section('content')
+    @foreach($cars as $car)
+        <ul>
+            <li class="">
+                <span>{{ $car->model }}</span>
+                <a href="{{ route('cars.show', $car->id) }}">Read more...</a>
+            </li>
+        </ul>
+    @endforeach
+@endsection
+

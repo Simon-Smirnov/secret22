@@ -48,7 +48,7 @@ class Store extends FormRequest
     }
 
     protected function ruleUniqueVin() {
-        return Rule::unique(Car::class, 'vin');
+        return Rule::unique(Car::class, 'vin')->withOutTrashed();
     }
     
 }
