@@ -27,6 +27,7 @@ Route::resource('cars', Cars::class);
 Route::get('trash', [Cars::class, 'trash'])->name('cars.trash.index');
 Route::put('/trash/{id}', [Cars::class, 'restore'])->name('cars.restore');
 
+
 // Route::get('/cars', [Cars::class, 'index']);
 // Route::post('/cars', [Cars::class, 'store']);
 // Route::get('/cars/create', [Cars::class, 'create']);
