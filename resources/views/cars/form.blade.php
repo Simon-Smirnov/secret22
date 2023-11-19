@@ -1,5 +1,5 @@
 <div class="mb-3">
-    <x-form-input name="manufacturer" label="Manufacturer"/>
+    <x-form-select name="brand_id" label="Brand" :options="$brands" placeholder="dont change"/>
 </div>
 <div class="mb-3">
     <x-form-input name="model" label="Model"/>

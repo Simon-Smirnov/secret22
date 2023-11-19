@@ -16,7 +16,8 @@
     @foreach($cars as $car)
         <ul>
             <li class="">
-                <span>{{ $car->model }}</span>
+                <em>{{ $car->brand->country->title }}</em>
+                <span>{{ $car->brand->title }} {{ $car->model }}</span>
                 <a href="{{ route('cars.show', $car->id) }}">Read more...</a>
             </li>
         </ul>

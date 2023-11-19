@@ -17,7 +17,7 @@ class Restore extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:cars,id',
-            'vin' => ['required', $this->ruleUniqueVin()]
+            //'vin' => ['required', $this->ruleUniqueVin()]
         ];
     }
 

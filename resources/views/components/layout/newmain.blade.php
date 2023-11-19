@@ -20,6 +20,11 @@
                     {{ session('success') }}
                 </p>
             @endif
+            @if(session('alert'))
+                <p class="alert alert-danger">
+                    {{ session('alert') }}
+                </p>
+            @endif
             <h1>@yield('h1')</h1>
             <div class="row">
                 <div class="col-3">

@@ -16,7 +16,7 @@ class Store extends FormRequest
     public function rules(): array
     {
         return [
-            'manufacturer' => 'required|min:2|max:64',
+            'brand_id' => 'required|integer|exists:brands,id',
             'model' => [
                 'required', 
                 'min:2',
@@ -34,7 +34,7 @@ class Store extends FormRequest
     public function attributes() 
     {
         return [
-            'manufacturer' => 'Manufacturer',
+            'brand_id' => 'Brand',
             'model' => 'Model',
             'price' => 'Price',
             'transmission' => 'Type of transmission',
@@ -48,7 +48,7 @@ class Store extends FormRequest
     }
 
     protected function ruleUniqueVin() {
-        return Rule::unique(Car::class, 'vin')->withOutTrashed();
+        return Rule::unique(Car::class, 'vin')->whereNull('deleted_at');
     }
     
 }

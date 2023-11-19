@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Posts;
 use App\Http\Controllers\Cars;
+use App\Http\Controllers\Brands;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/posts/{id}/edit', [Posts::class, 'edit'])->name('posts.edit');
 Route::post('/posts', [Posts::class, 'store'])->name('posts.store');
 
 Route::resource('cars', Cars::class);
+Route::resource('brands', Brands::class);
 Route::get('trash', [Cars::class, 'trash'])->name('cars.trash.index');
 Route::put('/trash/{id}', [Cars::class, 'restore'])->name('cars.restore');
 

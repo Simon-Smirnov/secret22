@@ -15,7 +15,7 @@
 @section('content')
 
     <div>
-        <div>Manufacturer: {{ $car->manufacturer }}</div>
+        <div>Brand: {{ $car->brand->title }}</div>
         <div>Model: {{ $car->model }}</div>
         <div>Price: {{ $car->price }}</div>
         <div>Transmission: {{ $car->transmission }}</div>
