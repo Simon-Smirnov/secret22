@@ -11,7 +11,10 @@
     <x-form-input name="vin" label="Vin code"/>
 </div>
 <div class="mb-3">
-    <x-form-select name="transmissions" label="Transmission" :options="$transmissions" placeholder="not chosen"/>
+    <x-form-select name="transmissions" label="Transmission" :options="$transmissions" placeholder="--not chosen--"/>
+</div>
+<div class="mb-3">
+    <x-form-select name="tag_id[]" label="Tag" :options="$tags" placeholder="--tag not chosen--" multiple :default="$currentTags"/>
 </div>
 <div class="mb-3">
     <button class="btn btn-success">Create/Update</button>

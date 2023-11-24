@@ -1,8 +1,8 @@
 @extends('components.layout.newmain')
 
-@section('title', 'Edit car')
+@section('title', 'All tags')
 
-@section('h1', "Edit car")
+@section('h1', 'All tags')
 
 @section('menu')
     <ul>
@@ -15,11 +15,13 @@
 @endsection
 
 @section('content')
-
-    <x-form action="{{ route('cars.update', $car->id) }}" method="put">
-        @bind($car)
-            @include('cars.form')
-        @endbind
-    </x-form>
-
+    @foreach($tags as $tag)
+        <ul>
+            <li class="">
+                <span>{{ $tag->title }}</span>
+                <a href="{{ route('tags.show', $tag->id) }}">Read more...</a>
+            </li>
+        </ul>
+    @endforeach
 @endsection
+

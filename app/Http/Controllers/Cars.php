@@ -7,6 +7,7 @@ use App\Http\Requests\Cars\Update as UpdateRequest;
 use App\Http\Requests\Cars\Restore as RestoreRequest;
 use App\Models\Car;
 use App\Models\Brand;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class Cars extends Controller
@@ -20,14 +21,19 @@ class Cars extends Controller
     public function create()
     {
         $transmissions = config('car.transmission');
+        $tags = Tag::orderBy('title')->pluck('title', 'id');
         $brands = Brand::orderBy('title')->pluck('title', 'id');
-        return view('cars.create', compact('transmissions', 'brands'));
+        $currentTags = [];
+        return view('cars.create', compact('transmissions', 'brands', 'tags', 'currentTags'));
     }
 
     public function store(StoreRequest $request)
     {
         $fields = $request->validated();
+        $tag_id = $fields['tag_id'];
+        unset($fields['tag_id']);
         $car = Car::create($fields);
+        $car->tags()->attach($tag_id);
         $request->session()->flash('success', trans('notifications.cars.create'));
         return redirect()->route('cars.show', $car->id);
     }
@@ -41,15 +47,21 @@ class Cars extends Controller
 
     public function edit(Car $car)
     {
+        $car->load('tags');
         $transmissions = config('car.transmission');
+        $tags = Tag::orderBy('title')->pluck('title', 'id');
         $brands = Brand::orderBy('title')->pluck('title', 'id');
-        return view('cars.edit', compact('car', 'transmissions', 'brands'));
+        $currentTags = $car->tags->pluck('id')->toArray();
+        return view('cars.edit', compact('car', 'transmissions', 'brands', 'tags', 'currentTags'));
     }
 
     public function update(UpdateRequest $request, Car $car)
     {
         $fields = $request->validated();
+        $tag_id = $fields['tag_id'];
+        unset($fields['tag_id']);
         $car->update($fields);
+        $car->tags()->attach($tag_id);
         $request->session()->flash('success', trans('notifications.cars.edit'));
         return redirect()->route('cars.show', $car->id);
     }
