@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('car_tag', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Car::class)->constrained();
-            $table->foreignIdFor(Tag::class)->constrained();
+            $table->foreignIdFor(Car::class)->constrained()->onDelete('cascade');
+            $table->foreignIdFor(Tag::class)->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

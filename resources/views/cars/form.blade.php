@@ -14,7 +14,7 @@
     <x-form-select name="transmissions" label="Transmission" :options="$transmissions" placeholder="--not chosen--"/>
 </div>
 <div class="mb-3">
-    <x-form-select name="tag_id[]" label="Tag" :options="$tags" placeholder="--tag not chosen--" multiple :default="$currentTags"/>
+    <x-form-select name="tags[]" label="Tag" :options="$tags" :size="$tags->count()" multiple many-relation/>
 </div>
 <div class="mb-3">
     <button class="btn btn-success">Create/Update</button>

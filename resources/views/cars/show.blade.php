@@ -29,13 +29,16 @@
                 @endforeach
             </ul>
         </div>
+        <div>Status: {{ $car->status->toString() }}</div>
     <hr>
     <a href="{{ route('cars.edit', $car->id) }}">Edit car</a>
     <hr>
-    <form method="POST" action="{{ route('cars.destroy', $car->id) }}">
-        @method('DELETE')
-        @csrf
-        <button>Delete car</button>
-    <form>
+    @if($car->deletable)
+        <form method="POST" action="{{ route('cars.destroy', $car->id) }}">
+            @method('DELETE')
+            @csrf
+            <button>Delete car</button>
+        <form>
+    @endif
 
 @endsection

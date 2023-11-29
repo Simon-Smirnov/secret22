@@ -28,8 +28,8 @@ class Store extends FormRequest
                 Rule::in(array_keys(config('car.transmission'))),
             ],
             'vin' => ['required', 'min:4', 'max:14', $this->ruleUniqueVin()],
-            'tag_id' => 'required|array',
-            'tag_id.*' => 'exists:tags,id'
+            'tags' => 'required|array',
+            'tags.*' => 'exists:tags,id'
         ];
     }
 
@@ -41,7 +41,7 @@ class Store extends FormRequest
             'price' => 'Price',
             'transmission' => 'Type of transmission',
             'vin' => 'VIN code',
-            'tag_id' => 'Tag'
+            'tags' => 'Tag'
         ];
     }
 
