@@ -37,4 +37,9 @@ class Car extends Model
     public function scopeActive($query) {
         return $query->where('status', Status::ACTIVE);
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

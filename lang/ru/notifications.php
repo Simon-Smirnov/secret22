@@ -7,6 +7,9 @@
             'delete' => 'Car was deleted!',
             'restore' => 'Car was restored!',
             'restore-fail-vin' => 'No one cant restore the car if there is such vin - ":vin" already exists.',
-            'cant-delete' => 'You cant delete it.'
+            'cant-delete' => 'You cant delete it.',
+        ],
+        'comments' => [
+            'add' => "Thanks. Your comment was created. After moderation it will be added on site." 
         ],
     ];

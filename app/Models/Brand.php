@@ -7,6 +7,7 @@ use App\Models\Country;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Brand extends Model
 {
@@ -20,5 +21,10 @@ class Brand extends Model
 
     public function country() {
         return $this->belongsTo(Country::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }
