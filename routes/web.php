@@ -5,6 +5,7 @@ use App\Http\Controllers\Cars;
 use App\Http\Controllers\Brands;
 use App\Http\Controllers\Tags;
 use App\Http\Controllers\Comments;
+use App\Http\Controllers\Auth\Sessions;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('/auth')->middleware('guest')->name('auth.')->group(function() {
+    Route::controller(Sessions::class)->group(function() {
+        // Route::middleware('guest')->group(function() {
+            Route::get('/login', 'create')->name('session.login');
+        // });
+        Route::post('/login', 'store')->name('session.store');
+    });
+});
+
 Route::get('/posts', [Posts::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [Posts::class, 'create'])->name('posts.create');
 Route::put('/posts/{id}', [Posts::class, 'update'])->name('posts.update');
@@ -27,8 +37,13 @@ Route::get('/posts/{id}/edit', [Posts::class, 'edit'])->name('posts.edit');
 Route::post('/posts', [Posts::class, 'store'])->name('posts.store');
 
 Route::resource('cars', Cars::class);
-Route::resource('brands', Brands::class);
-Route::resource('tags', Tags::class);
+
+Route::middleware('auth', 'verified')->group(function() {
+    Route::resource('brands', Brands::class);
+    Route::middleware('can:tags')->group(function() {
+        Route::resource('tags', Tags::class);
+    });
+});
 Route::post('comments', [Comments::class, 'store'])->name('comments.store');
 Route::get('trash', [Cars::class, 'trash'])->name('cars.trash.index');
 Route::put('/trash/{id}', [Cars::class, 'restore'])->name('cars.restore');
