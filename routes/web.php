@@ -21,11 +21,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/auth')->middleware('guest')->name('auth.')->group(function() {
     Route::controller(Sessions::class)->group(function() {
-        // Route::middleware('guest')->group(function() {
-            Route::get('/login', 'create')->name('session.login');
-        // });
+        Route::get('/login', 'create')->name('session.login');
         Route::post('/login', 'store')->name('session.store');
     });
+});
+
+Route::prefix('/auth')->middleware('auth')->name('auth.')->group(function() {
+    Route::get('/logout', [Sessions::class, 'destroy'])->name('session.logout');
+    // Route::controller(Sessions::class)->group(function() {
+    //     Route::get('/login', 'create')->name('session.login');
+    //     Route::post('/login', 'store')->name('session.store');
+    // });
 });
 
 Route::get('/posts', [Posts::class, 'index'])->name('posts.index');

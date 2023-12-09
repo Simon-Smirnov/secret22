@@ -7,7 +7,7 @@
         <li><a href="{{ route('tags.create') }}">Create tag</a></li>
         <li><a href="{{ route('brands.index') }}">All brand</a></li>
         <li><a href="{{ route('brands.create') }}">Add new brand</a></li>
-        <li><a href="{{ route('auth.session.login') }}">Logout</a></li>
+        <li><a href="{{ route('auth.session.logout') }}">Logout</a></li>
     @else
         <li><a href="{{ route('auth.session.login') }}">Login</a></li>
     @endif
