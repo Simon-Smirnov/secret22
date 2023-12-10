@@ -6,6 +6,7 @@ use App\Http\Controllers\Brands;
 use App\Http\Controllers\Tags;
 use App\Http\Controllers\Comments;
 use App\Http\Controllers\Auth\Sessions;
+use App\Http\Controllers\Auth\Register;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,12 +20,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('/auth')->name('auth.')->group(function() {
+    Route::controller(Register::class)->group(function() {
+        Route::get('/register', 'create')->name('register.form');
+        Route::post('/register', 'store')->name('register.store');
+    });
+});
+
 Route::prefix('/auth')->middleware('guest')->name('auth.')->group(function() {
     Route::controller(Sessions::class)->group(function() {
         Route::get('/login', 'create')->name('session.login');
         Route::post('/login', 'store')->name('session.store');
     });
+    // Route::controller(Register::class)->group(function() {
+    //     Route::get('/register', 'create')->name('register.form');
+    //     Route::post('/register', 'store')->name('register.store');
+    // });
 });
+
+
 
 Route::prefix('/auth')->middleware('auth')->name('auth.')->group(function() {
     Route::get('/logout', [Sessions::class, 'destroy'])->name('session.logout');

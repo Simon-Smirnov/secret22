@@ -10,5 +10,6 @@
         <li><a href="{{ route('auth.session.logout') }}">Logout</a></li>
     @else
         <li><a href="{{ route('auth.session.login') }}">Login</a></li>
+        <li><a href="{{ route('auth.register.form') }}">Register</a></li>
     @endif
 </ul>
