@@ -39,7 +39,6 @@ Route::prefix('/auth')->middleware('guest')->name('auth.')->group(function() {
 });
 
 
-
 Route::prefix('/auth')->middleware('auth')->name('auth.')->group(function() {
     Route::get('/logout', [Sessions::class, 'destroy'])->name('session.logout');
     // Route::controller(Sessions::class)->group(function() {
