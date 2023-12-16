@@ -62,6 +62,7 @@ Route::middleware('auth', 'verified')->group(function() {
     Route::middleware('can:tags')->group(function() {
         Route::resource('tags', Tags::class);
     });
+    Route::get('/admin/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
 });
 Route::post('comments', [Comments::class, 'store'])->name('comments.store');
 Route::get('trash', [Cars::class, 'trash'])->name('cars.trash.index');

@@ -11,11 +11,38 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Enums\Cars\Status;
+use App\Services\AddressParser\ParserInterface;
+
 
 class Cars extends Controller
 {
-    public function index()
+    public function index(ParserInterface $addressParser)
     {
+
+        // Абсолютный путь к файлу
+        // $filePath = base_path('node_modules/airbag.svg');
+
+        // // Проверка существования файла
+        // if (file_exists($filePath)) {
+        //     // Чтение содержимого файла
+        //     //$fileContents = file_get_contents($filePath);
+
+        //     dd($filePath);
+
+        //     // Вывод содержимого файла
+        //     echo $fileContents;
+        // } else {
+        //     echo 'Файл не найден.';
+        // }
+
+        //dd('11111');
+        //$dadata = new \Dadata\DadataClient(config('dadata.token'), config('dadata.secret'));
+
+        //dd($dadata);
+
+        //$res = $addressParser->clean('мск сухонская 11 89');
+        //dd($res);
+
         //$cars = Car::with('brand.country', 'tags')/*->where('status', Status::ACTIVE)*/->orderByDesc('created_at')->get();
         $cars = Car::active()->with('brand.country', 'tags')/*->where('status', Status::ACTIVE)*/->orderByDesc('created_at')->get();
         return view('cars.index', compact('cars'));

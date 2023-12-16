@@ -160,6 +160,8 @@ return [
          * Package Service Providers...
          */
 
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        
         /*
          * Application Service Providers...
          */
@@ -168,6 +170,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\AddressParserServiceProvider::class,
     ])->toArray(),
 
     /*
