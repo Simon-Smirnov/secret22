@@ -47,17 +47,19 @@ Route::prefix('/auth')->middleware('auth')->name('auth.')->group(function() {
     // });
 });
 
-Route::get('/posts', [Posts::class, 'index'])->name('posts.index');
-Route::get('/posts/create', [Posts::class, 'create'])->name('posts.create');
-Route::put('/posts/{id}', [Posts::class, 'update'])->name('posts.update');
-Route::delete('/posts/{id}', [Posts::class, 'destroy'])->name('posts.destroy');
-Route::get('/posts/{id}', [Posts::class, 'show'])->name('posts.show');
-Route::get('/posts/{id}/edit', [Posts::class, 'edit'])->name('posts.edit');
-Route::post('/posts', [Posts::class, 'store'])->name('posts.store');
+// Route::get('/posts', [Posts::class, 'index'])->name('posts.index');
+// Route::get('/posts/create', [Posts::class, 'create'])->name('posts.create');
+// Route::put('/posts/{id}', [Posts::class, 'update'])->name('posts.update');
+// Route::delete('/posts/{id}', [Posts::class, 'destroy'])->name('posts.destroy');
+// Route::get('/posts/{id}', [Posts::class, 'show'])->name('posts.show');
+// Route::get('/posts/{id}/edit', [Posts::class, 'edit'])->name('posts.edit');
+// Route::post('/posts', [Posts::class, 'store'])->name('posts.store');
 
 Route::resource('cars', Cars::class);
 
 Route::middleware('auth', 'verified')->group(function() {
+    Route::resource('posts', Posts::class);
+
     Route::resource('brands', Brands::class);
     Route::middleware('can:tags')->group(function() {
         Route::resource('tags', Tags::class);
